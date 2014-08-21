@@ -1,3 +1,9 @@
+/* Feed Follow - RSS based alerting system for new content on websites
+ * Copyright (C) 2013-2014 Karan Kadam
+ * License: http://www.gnu.org/licenses/gpl.html GPL version 2 or higher
+*/
+
+
 <?php
 
 $hostname = "localhost";

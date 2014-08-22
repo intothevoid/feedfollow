@@ -1,8 +1,21 @@
+<html>
+<body>
+
+<form action="index.php" method="post">
+Feed URL: <input type="text" name="feedurl"><br>
+<input type="submit">
+</form>
+
+</body>
+</html>
+
 <?php
 
 require '../php/autoloader.php';
 
-$url = 'http://news.google.com/news?ned&topic=h&output=rss';
+#$url = 'http://news.google.com/news?ned&topic=h&output=rss';
+
+$url = $_POST['feedurl'];
 
 $feed = new SimplePie();
 $feed->set_feed_url($url);
@@ -25,7 +38,6 @@ if (isset($_GET['item']))
 $link = $_SERVER['REQUEST_URI'];
 
 // loop through items
-
 foreach ($feed->get_items($start, $length) as $key=>$item)
 {
     // set query string to item number

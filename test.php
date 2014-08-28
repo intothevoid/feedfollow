@@ -12,6 +12,7 @@ Feed URL: <input type="text" name="feedurl"><br>
 <?php
 
 require 'php/autoloader.php';
+require 'php/PushBullet.class.php';
 
 #$url = 'http://news.google.com/news?ned&topic=h&output=rss';
 
@@ -23,13 +24,33 @@ $feed->init();
 $feed->handle_content_type();
 
 echo '<h2>' . $feed->get_title() . '</h2>';
-echo '<h3>' . $feed->get_description() . '</h3>';
 
 foreach ($feed->get_items() as $item)
 {
-    echo '<p> <a href=' . $item->get_link() . '>' . $item->get_title() .
-        '</a> <small>' . $item->get_date() . '</small> </p>';
+    echo '<article>';
+    echo '<p> <header> <a href=' . $item->get_link() . '>' . $item->get_title() .
+        '</a> </header> <small>' . $item->get_date() . '</small> </p>';
+
+    echo '</article>';
 }
 
-echo 'Done.';
+
+try
+{
+    $pb = new PushBullet('gqT3VNAcgiEFIE8mfY2qdOcqfDmTBpv9');
+
+    print_r($pb->getUserInformation());
+
+    print_r($pb->getDevices());
+
+    $pb->pushNotepushNote('karankadam@gmail.com', 'Hey!', 'It works!');
+
+    echo 'Pushed!';
+}
+
+catch (PushBulletException $e)
+{
+    // Handle exception
+    die($e->getMessage());
+}
 ?>

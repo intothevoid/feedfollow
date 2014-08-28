@@ -1,3 +1,9 @@
+<?php
+
+//die('woo hoo');
+
+?>
+
 <html>
 <body>
 
@@ -7,11 +13,11 @@ Feed URL: <input type="text" name="feedurl"><br>
 </form>
 
 </body>
-</html>
+
 
 <?php
 
-require '../php/autoloader.php';
+require 'php/autoloader.php';
 
 #$url = 'http://news.google.com/news?ned&topic=h&output=rss';
 
@@ -64,3 +70,4 @@ foreach ($feed->get_items($start, $length) as $key=>$item)
 }
 
 ?>
+</html>

@@ -37,12 +37,12 @@ foreach ($feed->get_items() as $item)
 
 try
 {
-    $pb = new PushBullet('gqT3VNAcgiEFIE8mfY2qdOcqfDmTBpv9');
+    $tokenfile = fopen("push_bullet_token", "r") or die("Unable to open token file!");
+    $token = fread($tokenfile, filesize("push_bullet_token"));
 
+    $pb = new PushBullet($token);
     print_r($pb->getUserInformation());
-
     print_r($pb->getDevices());
-
     $pb->pushNotepushNote('karankadam@gmail.com', 'Hey!', 'It works!');
 
     echo 'Pushed!';
